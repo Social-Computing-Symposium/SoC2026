@@ -126,6 +126,21 @@
             const mdToHtml = (src) => (typeof marked === 'function' ? marked(src) : marked.parse(src));
             const mdLexer = (src) => (typeof marked === 'function' ? marked.lexer(src) : marked.lexer(src));
 
+            const escapeCssAttrValue = (value) => String(value).replace(/\\/g, "\\\\").replace(/\"/g, '\\"');
+            const getDecodedHash = () => {
+                const raw = window.location.hash;
+                if (!raw || raw.length <= 1) return null;
+                try {
+                    return decodeURIComponent(raw.slice(1));
+                } catch (e) {
+                    return raw.slice(1);
+                }
+            };
+            const findTabLinkById = (tabId) => {
+                const selector = '#tabs a.nav-link[data-toggle="tab"][href="#' + escapeCssAttrValue(tabId) + '"]';
+                return document.querySelector(selector);
+            };
+
             let tabLevel = 2;
             let currentSection = null;
             let contents = {};
@@ -161,6 +176,39 @@
                     $('#' + sect).html("<h1>" + mdToHtml(contents[sect]) + "</h1>");
                 }
             }
+
+            // URLの #<tabId> で表示タブを制御する
+            let suppressHashUpdate = false;
+            const activateTabFromHash = () => {
+                const tabId = getDecodedHash();
+                if (!tabId) return;
+                const link = findTabLinkById(tabId);
+                if (!link) return;
+                suppressHashUpdate = true;
+                $(link).one('shown.bs.tab', function() {
+                    suppressHashUpdate = false;
+                });
+                $(link).tab('show');
+            };
+
+            window.addEventListener('hashchange', activateTabFromHash);
+            window.addEventListener('popstate', activateTabFromHash);
+
+            // タブ切替時にURLも更新（BootstrapがpreventDefaultするため自前で反映）
+            $('#tabs').on('shown.bs.tab', 'a[data-toggle="tab"]', function(e) {
+                if (suppressHashUpdate) return;
+                const href = e.target.getAttribute('href');
+                if (!href || !href.startsWith('#')) return;
+                const tabId = href.slice(1);
+                const encoded = encodeURIComponent(tabId);
+                const nextHash = '#' + encoded;
+                if (window.location.hash !== nextHash) {
+                    history.pushState(null, '', nextHash);
+                }
+            });
+
+            // 初期表示（直リンク対応）
+            activateTabFromHash();
         }).catch((error) => console.log(error));
     </script>
 </body>
