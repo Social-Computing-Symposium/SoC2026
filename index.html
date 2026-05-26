@@ -14,7 +14,8 @@
             --col-dark: #365A76;
             --col-light: #CBD8E3;
             --col-white: #F2F6FA;
-            --height-head: 60px;
+                --col-accent: #D96C1F;
+            --height-head: 72px;
         }
         
         html {
@@ -30,10 +31,40 @@
         
         #GitHub {
             position: fixed;
-            top: 0;
-            left: calc(-1 * var(--height-head));
-            width: var(--height-head);
-            margin-left: 100%;
+            top: 0.7rem;
+            right: 1rem;
+            z-index: 6;
+        }
+
+        #repogitory {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(203, 216, 227, 0.16) 100%);
+            border: 1px solid rgba(242, 246, 250, 0.18);
+            box-shadow: 0 12px 24px rgba(31, 54, 71, 0.18);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+        }
+
+        #repogitory:hover,
+        #repogitory:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 28px rgba(31, 54, 71, 0.22);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(203, 216, 227, 0.22) 100%);
+            outline: none;
+        }
+
+        #repogitory img {
+            display: block;
+            width: 1.55rem;
+            height: 1.55rem;
+            opacity: 0.92;
+            filter: brightness(0) invert(1);
         }
         
         #head {
@@ -42,15 +73,66 @@
             left: 0;
             width: 100vw;
             height: var(--height-head);
-            background-color: var(--col-dark);
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            background: linear-gradient(135deg, #2d4d65 0%, #3e6684 55%, #517998 100%);
             color: var(--col-light);
+            box-shadow: 0 10px 24px rgba(31, 54, 71, 0.16);
             overflow: hidden;
+        }
+
+        #head::after {
+            content: "";
+            position: absolute;
+            inset: auto -8% -35% auto;
+            width: 240px;
+            height: 240px;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(203, 216, 227, 0.18) 0%, rgba(203, 216, 227, 0) 72%);
+            pointer-events: none;
+        }
+
+        .site-head {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            min-width: 0;
+        }
+
+        .site-head__title {
+            margin: 0;
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            line-height: 1;
+            white-space: nowrap;
         }
         
         #head h1 {
-            font-size: calc(var(--height-head)*0.75);
-            line-height: var(--height-head);
-            margin: 0px;
+            margin: 0;
+        }
+
+        .site-head__subtitle {
+            display: inline-flex;
+            align-items: center;
+            min-width: 0;
+            margin: 0;
+            padding-left: 1rem;
+            border-left: 1px solid rgba(242, 246, 250, 0.24);
+            color: rgba(242, 246, 250, 0.88);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 0.92rem;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            line-height: 1.45;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .container h3 {
@@ -58,6 +140,24 @@
             padding-top: 1em;
             padding-bottom: 0.2em;
             border-bottom: 4px solid var(--col-light);
+        }
+
+        .container h3 .session-open-badge {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.8rem;
+            padding: 0.22rem 0.7rem;
+            border: 1px solid var(--col-accent);
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--col-accent) 0%, #f08a3c 100%);
+            color: #ffffff;
+            box-shadow: 0 8px 18px rgba(217, 108, 31, 0.28);
+            font-family: "Yu Gothic UI", "Hiragino Sans", sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            line-height: 1.4;
+            vertical-align: middle;
+            white-space: nowrap;
         }
         
         .container h3::after {
@@ -68,27 +168,508 @@
             width: 10%;
             display: block;
         }
+
+        .tab-pane[id="ご案内"],
+        .tab-pane[id="参加登録"] {
+            padding-top: 0.6rem;
+        }
+
+        .tab-pane[id="ご案内"] > h3,
+        .tab-pane[id="参加登録"] > h3 {
+            margin-top: 2rem;
+            padding: 1rem 1.2rem 0.95rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(232, 239, 245, 0.92) 100%);
+            border: 1px solid rgba(54, 90, 118, 0.12);
+            border-left: 6px solid var(--col-dark);
+            border-radius: 18px;
+            box-shadow: 0 14px 28px rgba(54, 90, 118, 0.08);
+            color: #244257;
+        }
+
+        .tab-pane[id="ご案内"] > h3::after,
+        .tab-pane[id="参加登録"] > h3::after {
+            display: none;
+        }
+
+        .tab-pane[id="ご案内"] > p,
+        .tab-pane[id="参加登録"] > p {
+            margin: 1rem 0 0;
+            padding: 0 0.15rem;
+            color: #385061;
+            line-height: 2;
+        }
+
+        .tab-pane[id="ご案内"] > h3 + p,
+        .tab-pane[id="参加登録"] > h3 + p {
+            margin-top: 1.15rem;
+            font-size: 1.02rem;
+        }
+
+        .tab-pane[id="ご案内"] > ul,
+        .tab-pane[id="参加登録"] > ul {
+            margin: 1rem 0 0;
+            padding: 1.1rem 1.2rem 1.15rem;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(54, 90, 118, 0.1);
+            border-radius: 18px;
+            box-shadow: 0 10px 24px rgba(54, 90, 118, 0.06);
+            list-style: none;
+        }
+
+        .tab-pane[id="ご案内"] > ul > li,
+        .tab-pane[id="参加登録"] > ul > li {
+            position: relative;
+            margin: 0;
+            padding: 0.75rem 0 0.75rem 1.4rem;
+            color: #3a5264;
+            line-height: 1.85;
+        }
+
+        .tab-pane[id="ご案内"] > ul > li + li,
+        .tab-pane[id="参加登録"] > ul > li + li {
+            border-top: 1px solid rgba(54, 90, 118, 0.08);
+        }
+
+        .tab-pane[id="ご案内"] > ul > li::before,
+        .tab-pane[id="参加登録"] > ul > li::before {
+            content: "";
+            position: absolute;
+            top: 1.45rem;
+            left: 0.05rem;
+            width: 0.52rem;
+            height: 0.52rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--col-dark) 0%, #6f8ea7 100%);
+            box-shadow: 0 0 0 4px rgba(203, 216, 227, 0.45);
+        }
+
+        .tab-pane[id="ご案内"] > ul > li > strong,
+        .tab-pane[id="参加登録"] > ul > li > strong {
+            color: #20384a;
+            font-weight: 700;
+        }
+
+        .tab-pane[id="ご案内"] > ul > li > ul,
+        .tab-pane[id="参加登録"] > ul > li > ul {
+            margin: 0.55rem 0 0.1rem;
+            padding: 0.1rem 0 0.1rem 1rem;
+            list-style: none;
+            border-left: 2px solid rgba(54, 90, 118, 0.14);
+        }
+
+        .tab-pane[id="ご案内"] > ul > li > ul > li,
+        .tab-pane[id="参加登録"] > ul > li > ul > li {
+            position: relative;
+            padding-left: 0.9rem;
+            color: #52697a;
+            line-height: 1.8;
+        }
+
+        .tab-pane[id="ご案内"] > ul > li > ul > li + li,
+        .tab-pane[id="参加登録"] > ul > li > ul > li + li {
+            margin-top: 0.35rem;
+        }
+
+        .tab-pane[id="ご案内"] > ul > li > ul > li::before,
+        .tab-pane[id="参加登録"] > ul > li > ul > li::before {
+            content: "";
+            position: absolute;
+            top: 0.82rem;
+            left: 0;
+            width: 0.46rem;
+            height: 1px;
+            background: rgba(54, 90, 118, 0.5);
+        }
+
+        .tab-pane[id="運営組織"].active {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            align-items: start;
+            padding-top: 0.5rem;
+        }
+
+        .tab-pane[id="運営組織"] > .committee-card {
+            padding: 1rem 1rem 0.95rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 245, 249, 0.92) 100%);
+            border: 1px solid rgba(54, 90, 118, 0.12);
+            border-radius: 18px;
+            box-shadow: 0 12px 24px rgba(54, 90, 118, 0.08);
+            min-width: 0;
+        }
+
+        .tab-pane[id="運営組織"] > .committee-card--wide {
+            grid-column: 1 / -1;
+        }
+
+        .tab-pane[id="運営組織"] > hr {
+            grid-column: 1 / -1;
+            margin: -0.1rem 0 0.05rem;
+            border: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        .tab-pane[id="運営組織"] > .committee-card > h3 {
+            margin: 0 0 0.7rem;
+            padding: 0 0 0.55rem;
+            border-bottom: 1px solid rgba(54, 90, 118, 0.12);
+            color: #244257;
+            font-size: 1rem;
+        }
+
+        .tab-pane[id="運営組織"] > .committee-card > h3::after {
+            display: none;
+        }
+
+        .tab-pane[id="運営組織"] > .committee-card > ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        .tab-pane[id="運営組織"] > .committee-card > ul > li {
+            margin: 0;
+            padding: 0.45rem 0.65rem;
+            border-radius: 12px;
+            background: rgba(203, 216, 227, 0.22);
+            color: #385061;
+            line-height: 1.65;
+        }
+
+        .tab-pane[id="運営組織"] > .committee-card > ul > li strong {
+            color: #20384a;
+        }
+
+        .tab-pane[id="過去のSoC"] {
+            padding-top: 0.5rem;
+        }
+
+        .tab-pane[id="過去のSoC"] > ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.9rem;
+        }
+
+        .tab-pane[id="過去のSoC"] > ul > li {
+            margin: 0;
+        }
+
+        .tab-pane[id="過去のSoC"] > ul > li > a {
+            position: relative;
+            display: flex;
+            min-height: 100%;
+            align-items: center;
+            padding: 1rem 1.15rem 1rem 3rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 245, 249, 0.92) 100%);
+            border: 1px solid rgba(54, 90, 118, 0.12);
+            border-radius: 18px;
+            box-shadow: 0 12px 24px rgba(54, 90, 118, 0.08);
+            color: #244257;
+            line-height: 1.7;
+            text-decoration: none;
+            transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+        }
+
+        .tab-pane[id="過去のSoC"] > ul > li > a::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            transform: translateY(-50%);
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--col-dark) 0%, #6f8ea7 100%);
+            box-shadow: 0 0 0 5px rgba(203, 216, 227, 0.38);
+        }
+
+        .tab-pane[id="過去のSoC"] > ul > li > a:hover,
+        .tab-pane[id="過去のSoC"] > ul > li > a:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(54, 90, 118, 0.22);
+            box-shadow: 0 16px 30px rgba(54, 90, 118, 0.12);
+            color: #1f3748;
+            outline: none;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 0.75rem 1rem;
+            align-items: center;
+            margin-top: 2rem;
+            padding: 1rem 1.2rem;
+            background: linear-gradient(135deg, rgba(255, 250, 245, 0.98) 0%, rgba(255, 241, 230, 0.94) 100%);
+            border: 1px solid rgba(217, 108, 31, 0.18);
+            border-left: 6px solid var(--col-accent);
+            border-radius: 20px;
+            box-shadow: 0 16px 34px rgba(217, 108, 31, 0.14);
+            border-bottom: none;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading::after {
+            display: none;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.38rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(217, 108, 31, 0.12);
+            color: #9c4310;
+            font-family: "Yu Gothic UI", "Hiragino Sans", sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.7rem;
+            height: 1.7rem;
+            padding: 0;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--col-accent) 0%, #f08a3c 100%);
+            box-shadow: 0 8px 16px rgba(217, 108, 31, 0.22);
+            cursor: pointer;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-trigger::before {
+            content: "";
+            width: 0.95rem;
+            height: 0.95rem;
+            background-color: #ffffff;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 15H5V10h14Zm0-11H5V6h14ZM7 12h5v5H7Z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 15H5V10h14Zm0-11H5V6h14ZM7 12h5v5H7Z'/%3E%3C/svg%3E");
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-trigger:focus-visible {
+            outline: 2px solid rgba(217, 108, 31, 0.35);
+            outline-offset: 2px;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-menu {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            left: 0;
+            z-index: 5;
+            min-width: 11rem;
+            padding: 0.45rem;
+            display: none;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(217, 108, 31, 0.18);
+            border-radius: 14px;
+            box-shadow: 0 18px 30px rgba(54, 90, 118, 0.14);
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar.is-open .session-heading__calendar-menu {
+            display: grid;
+            gap: 0.25rem;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-link {
+            display: block;
+            padding: 0.55rem 0.7rem;
+            border-radius: 10px;
+            color: #3b5366;
+            font-size: 0.82rem;
+            font-weight: 700;
+            line-height: 1.35;
+            text-decoration: none;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-link:hover,
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-link:focus-visible {
+            background: rgba(217, 108, 31, 0.08);
+            color: #8a3b0d;
+            outline: none;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-heading__title {
+            min-width: 0;
+            color: #6f2f08;
+            font-size: 1.18rem;
+            font-weight: 700;
+            line-height: 1.55;
+            letter-spacing: 0.01em;
+        }
+
+        .tab-pane[id="プログラム"] > h3.session-heading .session-open-badge {
+            margin-left: 0;
+            justify-self: end;
+        }
+
+        .tab-pane[id="プログラム"] > .session-child {
+            position: relative;
+            margin-left: 1.7rem;
+        }
+
+        .tab-pane[id="プログラム"] > ol.session-child::before,
+        .tab-pane[id="プログラム"] > .speaker-card.session-child::before,
+        .tab-pane[id="プログラム"] > ul.session-child::before,
+        .tab-pane[id="プログラム"] > p.session-child::before {
+            content: "";
+            position: absolute;
+            top: -0.25rem;
+            bottom: -0.25rem;
+            left: -1rem;
+            width: 2px;
+            background: linear-gradient(180deg, rgba(217, 108, 31, 0.35) 0%, rgba(217, 108, 31, 0.06) 100%);
+        }
+
+        .tab-pane[id="プログラム"] > ol {
+            list-style: none;
+            counter-reset: program-item;
+            margin: 1.15rem 0 2rem;
+            padding: 0;
+            display: grid;
+            gap: 0.95rem;
+        }
+
+        .tab-pane[id="プログラム"] > ol > li {
+            position: relative;
+            margin: 0;
+            padding: 1rem 1.15rem 1rem 4.15rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 249, 252, 0.94) 100%);
+            border: 1px solid rgba(54, 90, 118, 0.12);
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(54, 90, 118, 0.08);
+            color: #61788d;
+            font-size: 0.96rem;
+            line-height: 1.8;
+        }
+
+        .tab-pane[id="プログラム"] > ol > li::before {
+            counter-increment: program-item;
+            content: counter(program-item, decimal-leading-zero);
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.45rem;
+            height: 2.45rem;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--col-dark) 0%, #4c7390 100%);
+            color: var(--col-white);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            box-shadow: 0 10px 20px rgba(54, 90, 118, 0.18);
+        }
+
+        .tab-pane[id="プログラム"] > ol > li strong {
+            display: block;
+            margin-top: 0.4rem;
+            color: #21394b;
+            font-size: 1.08rem;
+            font-weight: 700;
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+
+        .tab-pane > h4 {
+            position: relative;
+            margin: 1.5rem 0 1rem;
+            padding: 1rem 1.25rem 1rem 4.5rem;
+            background: linear-gradient(135deg, rgba(203, 216, 227, 0.45) 0%, rgba(255, 255, 255, 0.98) 100%);
+            border-left: 6px solid var(--col-dark);
+            border-radius: 0 18px 18px 0;
+            box-shadow: 0 12px 30px rgba(54, 90, 118, 0.12);
+            color: #28465c;
+            font-family: "Yu Mincho", "Hiragino Mincho ProN", "Times New Roman", serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.75;
+            letter-spacing: 0.03em;
+        }
+
+        .tab-pane[id="プログラム"] > h4.session-child {
+            margin-top: 1.15rem;
+        }
+
+        .tab-pane[id="プログラム"] > blockquote.session-child,
+        .tab-pane[id="プログラム"] > .speaker-card.session-child,
+        .tab-pane[id="プログラム"] > ul.session-child,
+        .tab-pane[id="プログラム"] > p.session-child {
+            margin-top: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-pane > h4::before {
+            content: "";
+            position: absolute;
+            top: 1.02rem;
+            left: 1rem;
+            width: 2.35rem;
+            height: 2.35rem;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--col-accent) 0%, #f08a3c 100%);
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3 10v4c0 .55.45 1 1 1h2.32l1.37 3.43A1 1 0 0 0 8.62 19H11a1 1 0 0 0 .98-1.2L11.28 15H13l5 4V5l-5 4H4c-.55 0-1 .45-1 1Zm17.5 2c0 1.77-.77 3.36-2 4.46v-8.92c1.23 1.1 2 2.69 2 4.46Z'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M3 10v4c0 .55.45 1 1 1h2.32l1.37 3.43A1 1 0 0 0 8.62 19H11a1 1 0 0 0 .98-1.2L11.28 15H13l5 4V5l-5 4H4c-.55 0-1 .45-1 1Zm17.5 2c0 1.77-.77 3.36-2 4.46v-8.92c1.23 1.1 2 2.69 2 4.46Z'/%3E%3C/svg%3E");
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            opacity: 0.9;
+            filter: drop-shadow(0 10px 20px rgba(217, 108, 31, 0.24));
+        }
+
+        .tab-pane > h4 strong {
+            color: inherit;
+            font-weight: inherit;
+        }
         
         blockquote {
             position: relative;
             padding: 10px 15px 10px 60px;
             box-sizing: border-box;
             font-style: italic;
-            background: #f5f5f5;
-            color: #777777;
-            border-left: 4px solid var(--col-light);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(242, 246, 250, 0.94) 100%);
+            color: #556b7c;
+            border-left: 4px solid rgba(217, 108, 31, 0.34);
+            box-shadow: 0 8px 18px rgba(54, 90, 118, 0.1);
         }
 
         blockquote:before{
             display: inline-block;
             position: absolute;
-            top: 7px;
-            left: 0;
+            top: 5px;
+            left: 8px;
+            z-index: 1;
             content: "“";
-            font-family: sans-serif;
-            color: var(--col-dark);
-            font-size: 90px;
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--col-accent);
+            font-size: 96px;
+            font-weight: 700;
+            opacity: 0.78;
             line-height: 1;
         }
 
@@ -176,6 +757,152 @@
         }
 
         @media (max-width: 767.98px) {
+            #head {
+                padding: 0 1rem;
+            }
+
+            #GitHub {
+                top: 0.65rem;
+                right: 0.8rem;
+            }
+
+            #repogitory {
+                width: 2.7rem;
+                height: 2.7rem;
+                border-radius: 16px;
+            }
+
+            #repogitory img {
+                width: 1.35rem;
+                height: 1.35rem;
+            }
+
+            .site-head {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.18rem;
+            }
+
+            .site-head__title {
+                font-size: 1.35rem;
+            }
+
+            .site-head__subtitle {
+                padding-left: 0;
+                border-left: none;
+                font-size: 0.72rem;
+                line-height: 1.35;
+            }
+
+            .tab-pane[id="ご案内"] > h3,
+            .tab-pane[id="参加登録"] > h3 {
+                margin-top: 1.7rem;
+                padding: 0.9rem 1rem 0.85rem;
+            }
+
+            .tab-pane[id="ご案内"] > ul,
+            .tab-pane[id="参加登録"] > ul {
+                padding: 1rem;
+            }
+
+            .tab-pane[id="ご案内"] > ul > li,
+            .tab-pane[id="参加登録"] > ul > li {
+                padding: 0.7rem 0 0.7rem 1.2rem;
+            }
+
+            .tab-pane[id="ご案内"] > ul > li > ul,
+            .tab-pane[id="参加登録"] > ul > li > ul {
+                padding-left: 0.85rem;
+            }
+
+            .tab-pane[id="運営組織"].active {
+                grid-template-columns: 1fr;
+                gap: 0.85rem;
+            }
+
+            .tab-pane[id="過去のSoC"] > ul {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .tab-pane[id="過去のSoC"] > ul > li > a {
+                padding: 0.95rem 1rem 0.95rem 2.8rem;
+            }
+
+            .tab-pane[id="運営組織"] > hr {
+                margin: -0.15rem 0;
+            }
+
+            .tab-pane[id="運営組織"] > .committee-card {
+                padding: 0.9rem 0.9rem 0.85rem;
+            }
+
+            .tab-pane[id="プログラム"] > h3.session-heading {
+                grid-template-columns: 1fr;
+                gap: 0.65rem;
+                padding: 0.95rem 1rem;
+            }
+
+            .tab-pane[id="プログラム"] > h3.session-heading .session-heading__calendar-menu {
+                left: 0;
+                right: auto;
+            }
+
+            .tab-pane[id="プログラム"] > h3.session-heading .session-heading__title {
+                font-size: 1.05rem;
+            }
+
+            .tab-pane[id="プログラム"] > h3.session-heading .session-open-badge {
+                justify-self: start;
+            }
+
+            .tab-pane[id="プログラム"] > .session-child {
+                margin-left: 1rem;
+            }
+
+            .tab-pane[id="プログラム"] > ol.session-child::before,
+            .tab-pane[id="プログラム"] > .speaker-card.session-child::before,
+            .tab-pane[id="プログラム"] > ul.session-child::before,
+            .tab-pane[id="プログラム"] > p.session-child::before {
+                left: -0.65rem;
+            }
+
+            .container h3 .session-open-badge {
+                display: inline-block;
+                margin-top: 0.55rem;
+                margin-left: 0;
+            }
+
+            .tab-pane[id="プログラム"] > ol > li {
+                padding: 0.95rem 0.95rem 0.95rem 3.7rem;
+                font-size: 0.93rem;
+            }
+
+            .tab-pane[id="プログラム"] > ol > li::before {
+                top: 0.95rem;
+                left: 0.9rem;
+                width: 2.15rem;
+                height: 2.15rem;
+                border-radius: 12px;
+            }
+
+            .tab-pane[id="プログラム"] > ol > li strong {
+                font-size: 1rem;
+            }
+
+            .tab-pane > h4 {
+                padding: 0.9rem 1rem 0.9rem 4rem;
+                font-size: 1.12rem;
+                line-height: 1.6;
+            }
+
+            .tab-pane > h4::before {
+                top: 0.88rem;
+                left: 0.82rem;
+                width: 2.05rem;
+                height: 2.05rem;
+            }
+
             .speaker-card {
                 grid-template-columns: 1fr;
                 padding: 1.25rem;
@@ -200,7 +927,7 @@
     <div id="head">
     </div>
     <div id="GitHub">
-        <a id="repogitory" href="#"><img src="github.png" width="50" style="padding:5px;opacity:.8;"></a>
+        <a id="repogitory" href="#" aria-label="GitHub repository"><img src="github.png" alt="GitHub"></a>
     </div>
     <script defer>
         fetch('README.md').then((response) => response.text()).then((text) => {
@@ -221,6 +948,311 @@
             const findTabLinkById = (tabId) => {
                 const selector = '#tabs a.nav-link[data-toggle="tab"][href="#' + escapeCssAttrValue(tabId) + '"]';
                 return document.querySelector(selector);
+            };
+
+            const markdownToPlainText = (src) => {
+                const wrapper = document.createElement('div');
+                wrapper.innerHTML = mdToHtml(src || '');
+                return (wrapper.textContent || '').replace(/\s+/g, ' ').trim();
+            };
+
+            const renderSiteHeader = (subtitleMarkdown) => {
+                const header = document.getElementById('head');
+                if (!header) {
+                    return;
+                }
+
+                const subtitle = markdownToPlainText(subtitleMarkdown);
+                const title = (document.title || '').trim();
+
+                header.innerHTML = '';
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'site-head';
+
+                const titleNode = document.createElement('h1');
+                titleNode.className = 'site-head__title';
+                titleNode.textContent = title;
+
+                wrapper.appendChild(titleNode);
+
+                if (subtitle) {
+                    const subtitleNode = document.createElement('p');
+                    subtitleNode.className = 'site-head__subtitle';
+                    subtitleNode.textContent = subtitle;
+                    wrapper.appendChild(subtitleNode);
+                }
+
+                header.appendChild(wrapper);
+            };
+
+            const getCalendarEventTitle = (sessionTitle) => {
+                const prefix = (document.title || '').trim();
+                if (!prefix) {
+                    return sessionTitle;
+                }
+                return prefix + ' | ' + sessionTitle;
+            };
+
+            const formatLocalCalendarDate = (date) => {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                const hours = String(date.getHours()).padStart(2, '0');
+                const minutes = String(date.getMinutes()).padStart(2, '0');
+                const seconds = String(date.getSeconds()).padStart(2, '0');
+                return year + month + day + 'T' + hours + minutes + seconds;
+            };
+
+            const formatUtcCalendarDate = (date) => {
+                const year = date.getUTCFullYear();
+                const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+                const day = String(date.getUTCDate()).padStart(2, '0');
+                const hours = String(date.getUTCHours()).padStart(2, '0');
+                const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+                const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+                return year + month + day + 'T' + hours + minutes + seconds + 'Z';
+            };
+
+            const escapeIcsText = (text) => String(text)
+                .replace(/\\/g, '\\\\')
+                .replace(/;/g, '\\;')
+                .replace(/,/g, '\\,')
+                .replace(/\r?\n/g, '\\n');
+
+            const buildGoogleCalendarUrl = (eventData) => {
+                const params = new URLSearchParams({
+                    action: 'TEMPLATE',
+                    text: eventData.title,
+                    dates: formatLocalCalendarDate(eventData.start) + '/' + formatLocalCalendarDate(eventData.end),
+                    details: eventData.details,
+                    ctz: 'Asia/Tokyo'
+                });
+                return 'https://calendar.google.com/calendar/render?' + params.toString();
+            };
+
+            const buildIcsUrl = (eventData) => {
+                const lines = [
+                    'BEGIN:VCALENDAR',
+                    'VERSION:2.0',
+                    'PRODID:-//SoC2026//Program Calendar//JA',
+                    'BEGIN:VEVENT',
+                    'UID:' + eventData.uid,
+                    'DTSTAMP:' + formatUtcCalendarDate(new Date()),
+                    'DTSTART:' + formatUtcCalendarDate(eventData.utcStart),
+                    'DTEND:' + formatUtcCalendarDate(eventData.utcEnd),
+                    'SUMMARY:' + escapeIcsText(eventData.title),
+                    'DESCRIPTION:' + escapeIcsText(eventData.details),
+                    'END:VEVENT',
+                    'END:VCALENDAR'
+                ];
+                return URL.createObjectURL(new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' }));
+            };
+
+            const parseSessionDateRange = (metaText) => {
+                const match = metaText.match(/(\d{1,2})月(\d{1,2})日.*?(\d{1,2}):(\d{2})\s*-\s*(\d{1,2}):(\d{2})/);
+                if (!match) {
+                    return null;
+                }
+
+                const month = Number(match[1]);
+                const day = Number(match[2]);
+                const startHour = Number(match[3]);
+                const startMinute = Number(match[4]);
+                const endHour = Number(match[5]);
+                const endMinute = Number(match[6]);
+                const year = 2026;
+
+                const start = new Date(year, month - 1, day, startHour, startMinute, 0);
+                const end = new Date(year, month - 1, day, endHour, endMinute, 0);
+                const utcStart = new Date(Date.UTC(year, month - 1, day, startHour - 9, startMinute, 0));
+                const utcEnd = new Date(Date.UTC(year, month - 1, day, endHour - 9, endMinute, 0));
+
+                return { start, end, utcStart, utcEnd };
+            };
+
+            const collectSessionDetails = (heading) => {
+                const blocks = [];
+                let cursor = heading.nextElementSibling;
+                while (cursor && cursor.tagName !== 'H3') {
+                    const text = cursor.innerText ? cursor.innerText.trim() : cursor.textContent.trim();
+                    if (text) {
+                        blocks.push(text.replace(/\n{3,}/g, '\n\n'));
+                    }
+                    cursor = cursor.nextElementSibling;
+                }
+                return blocks.join('\n\n');
+            };
+
+            const attachCalendarControls = (heading, metaText, titleText) => {
+                const dateRange = parseSessionDateRange(metaText);
+                const metaNode = heading.querySelector('.session-heading__meta');
+                if (!dateRange || !metaNode) {
+                    return;
+                }
+
+                const details = collectSessionDetails(heading);
+                const eventData = {
+                    title: getCalendarEventTitle(titleText),
+                    details,
+                    start: dateRange.start,
+                    end: dateRange.end,
+                    utcStart: dateRange.utcStart,
+                    utcEnd: dateRange.utcEnd,
+                    uid: 'soc2026-' + formatLocalCalendarDate(dateRange.start) + '-' + encodeURIComponent(titleText) + '@soc2026'
+                };
+
+                const calendar = document.createElement('span');
+                calendar.className = 'session-heading__calendar';
+
+                const trigger = document.createElement('button');
+                trigger.type = 'button';
+                trigger.className = 'session-heading__calendar-trigger';
+                trigger.setAttribute('aria-label', 'カレンダーに追加');
+                trigger.setAttribute('aria-expanded', 'false');
+
+                const menu = document.createElement('span');
+                menu.className = 'session-heading__calendar-menu';
+
+                const googleLink = document.createElement('a');
+                googleLink.className = 'session-heading__calendar-link';
+                googleLink.href = buildGoogleCalendarUrl(eventData);
+                googleLink.target = '_blank';
+                googleLink.rel = 'noreferrer noopener';
+                googleLink.textContent = 'Google Calendar';
+
+                const icsLink = document.createElement('a');
+                icsLink.className = 'session-heading__calendar-link';
+                icsLink.href = buildIcsUrl(eventData);
+                icsLink.download = titleText + '.ics';
+                icsLink.textContent = 'ICS を保存';
+
+                menu.appendChild(googleLink);
+                menu.appendChild(icsLink);
+                calendar.appendChild(trigger);
+                calendar.appendChild(menu);
+                metaNode.prepend(calendar);
+
+                trigger.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const nextState = !calendar.classList.contains('is-open');
+                    document.querySelectorAll('.session-heading__calendar.is-open').forEach((node) => {
+                        node.classList.remove('is-open');
+                        const nodeTrigger = node.querySelector('.session-heading__calendar-trigger');
+                        if (nodeTrigger) {
+                            nodeTrigger.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                    if (nextState) {
+                        calendar.classList.add('is-open');
+                        trigger.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            };
+
+            document.addEventListener('click', (event) => {
+                if (event.target.closest('.session-heading__calendar')) {
+                    return;
+                }
+                document.querySelectorAll('.session-heading__calendar.is-open').forEach((node) => {
+                    node.classList.remove('is-open');
+                    const nodeTrigger = node.querySelector('.session-heading__calendar-trigger');
+                    if (nodeTrigger) {
+                        nodeTrigger.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            const decorateProgramSessionHeadings = (root) => {
+                if (!root || root.id !== 'プログラム') {
+                    return;
+                }
+
+                root.querySelectorAll(':scope > h3').forEach((heading) => {
+                    const badge = heading.querySelector('.session-open-badge');
+                    const badgeNode = badge ? badge.cloneNode(true) : null;
+                    const textOnly = Array.from(heading.childNodes)
+                        .filter((node) => !(node.nodeType === Node.ELEMENT_NODE && node.classList.contains('session-open-badge')))
+                        .map((node) => node.textContent)
+                        .join(' ')
+                        .replace(/\s+/g, ' ')
+                        .trim();
+
+                    if (!textOnly.includes('⋙')) {
+                        return;
+                    }
+
+                    const parts = textOnly.split('⋙');
+                    const meta = parts.shift().trim();
+                    const title = parts.join('⋙').trim();
+                    if (!meta || !title) {
+                        return;
+                    }
+
+                    heading.classList.add('session-heading');
+                    heading.textContent = '';
+
+                    const metaSpan = document.createElement('span');
+                    metaSpan.className = 'session-heading__meta';
+                    metaSpan.textContent = meta;
+
+                    const titleSpan = document.createElement('span');
+                    titleSpan.className = 'session-heading__title';
+                    titleSpan.textContent = title;
+
+                    heading.appendChild(metaSpan);
+                    heading.appendChild(titleSpan);
+                    if (badgeNode) {
+                        heading.appendChild(badgeNode);
+                    }
+                    attachCalendarControls(heading, meta, title);
+                });
+
+                let activeHeading = null;
+                Array.from(root.children).forEach((element) => {
+                    if (element.tagName === 'H3') {
+                        activeHeading = element.classList.contains('session-heading') ? element : null;
+                        return;
+                    }
+
+                    element.classList.remove('session-child');
+                    if (activeHeading) {
+                        element.classList.add('session-child');
+                    }
+                });
+            };
+
+            const decorateCommitteeRoster = (root) => {
+                if (!root || root.id !== '運営組織') {
+                    return;
+                }
+
+                const nodes = Array.from(root.children);
+                nodes.forEach((node) => {
+                    if (node.classList && node.classList.contains('committee-card')) {
+                        node.remove();
+                    }
+                });
+
+                for (let index = 0; index < nodes.length; index += 1) {
+                    const heading = nodes[index];
+                    if (!heading || heading.tagName !== 'H3') {
+                        continue;
+                    }
+
+                    const list = nodes[index + 1];
+                    if (!list || list.tagName !== 'UL') {
+                        continue;
+                    }
+
+                    const card = document.createElement('section');
+                    card.className = 'committee-card';
+
+                    heading.replaceWith(card);
+                    card.appendChild(heading);
+                    card.appendChild(list);
+                }
             };
 
             let tabLevel = 2;
@@ -248,6 +1280,8 @@
                 if (document.getElementById(sect) == null) {
                     let paragraph = $('<div class="tab-pane' + (init ? " active" : "") + '" id="' + sect + '"></div>');
                     paragraph.html(mdToHtml(contents[sect]));
+                    decorateProgramSessionHeadings(paragraph[0]);
+                    decorateCommitteeRoster(paragraph[0]);
                     let title = $('<li class="nav-item"><a class="nav-link' + (init ? " active" : "") + '" data-toggle="tab" href="#' + sect + '">' + sect + '</a></li>');
                     $('#panes').append(paragraph);
                     $('#tabs').append(title);
@@ -255,7 +1289,7 @@
                 } else if (sect == "GitHub") {
                     document.getElementById("repogitory").href = contents[sect].trim()
                 } else {
-                    $('#' + sect).html("<h1>" + mdToHtml(contents[sect]) + "</h1>");
+                    renderSiteHeader(contents[sect]);
                 }
             }
 
